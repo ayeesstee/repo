@@ -1,0 +1,12 @@
+# Copyright Ian Stewart 2024, All Rights Reserved.
+[package]
+name = "mercury_game_server"
+version = "0.1.0"
+publish = false
+edition = "2021"
+
+[dependencies]
+sol_runtime = { path = "../../../../sol/common/libraries/runtime" }
+
+[[bin]]
+name = "mercury_game_server"

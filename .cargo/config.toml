@@ -1,0 +1,8 @@
+# Copyright Ian Stewart 2024, All Rights Reserved.
+
+[build]
+target-dir = "./transient/rust/build"
+
+# For MinGW builds, we need to link against psapi, which is needed for MiMalloc to link successfully. 
+[target.x86_64-pc-windows-gnu]
+rustflags = ["-lpsapi"]

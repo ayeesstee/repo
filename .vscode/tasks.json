@@ -1,0 +1,81 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "cargo clean",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Build...",
+            "type": "shell",
+            "command": "cargo build --profile ${input:buildProfile} --target ${input:buildTarget} -p ${input:projectName}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Build All",
+            "type": "shell",
+            "command": "cargo build --profile ${input:buildProfile} --target ${input:buildTarget}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Code Coverage",
+            "type": "shell",
+            "command": "./bash/code_coverage.bash",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$rustc"
+            ]
+        }
+    ],
+    "inputs": [
+        {
+            "type": "pickString",
+            "id": "buildTarget",
+            "description": "Build Target",
+            "options": [
+                "x86_64-pc-windows-gnu",
+                "x86_64-unknown-linux-gnu"
+            ]
+        },
+        {
+            "type": "pickString",
+            "id": "buildProfile",
+            "description": "Build Profile",
+            "options": [
+                "dev",
+                "release"
+            ]
+        },
+        {
+            "type": "pickString",
+            "id": "projectName",
+            "description": "Project To Build",
+            "options": [
+                "sol_runtime",
+                "sol_shell",
+                "sol_physics_interface",
+                "mercury_game_client",
+                "mercury_game_server"
+            ]
+        }
+    ]
+}

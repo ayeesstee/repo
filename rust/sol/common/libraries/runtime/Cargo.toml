@@ -1,0 +1,11 @@
+# Copyright Ian Stewart 2024, All Rights Reserved.
+[package]
+name = "sol_runtime"
+version = "0.1.0"
+publish = false
+edition = "2021"
+
+[dependencies]
+mimalloc = { version = "*", default-features = false }
+
+[lib]

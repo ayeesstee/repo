@@ -1,0 +1,40 @@
+# Copyright Ian Stewart 2024, All Rights Reserved.
+[workspace]
+members = [
+    "rust/sol/common/libraries/module_registry",
+    "rust/sol/common/libraries/runtime",
+    "rust/sol/common/libraries/shell",
+    "rust/sol/common/modules/physics/interface",
+    "rust/sol/common/modules/physics/implementation",
+    "rust/mercury/client/applications/game_client",
+    "rust/mercury/server/applications/game_server",
+]
+
+[workspace.dependencies]
+libloading = "0.8.3"
+mimalloc = { version = "0.1.41", default-features = false }
+notify = "6.1.1"
+
+[profile.dev]
+opt-level = 1
+debug = true
+split-debuginfo = 'packed'
+debug-assertions = true
+overflow-checks = true
+lto = false
+panic = 'unwind'
+incremental = true
+codegen-units = 256
+rpath = false
+
+[profile.release]
+opt-level = 3
+debug = true
+split-debuginfo = 'packed'
+debug-assertions = false
+overflow-checks = false
+lto = true
+panic = 'abort'
+incremental = true
+codegen-units = 1
+rpath = false

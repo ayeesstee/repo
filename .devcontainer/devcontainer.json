@@ -1,0 +1,19 @@
+{
+    "name": "repo",
+    "build": {
+        "dockerfile": "../docker/images/devcontainer/devcontainer.dockerfile",
+        "context": "../"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "rust-lang.rust-analyzer",
+                "Ionide.Ionide-fsharp",
+                "tamasfe.even-better-toml",
+                "eamodio.gitlens",
+                "ryanluker.vscode-coverage-gutters",
+                "vadimcn.vscode-lldb"
+            ]
+        }
+    }
+}

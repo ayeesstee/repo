@@ -1,0 +1,8 @@
+# Copyright Ian Stewart 2024, All Rights Reserved.
+[package]
+name = "sol_module_registry"
+version = "0.1.0"
+publish = false
+edition = "2021"
+
+[lib]

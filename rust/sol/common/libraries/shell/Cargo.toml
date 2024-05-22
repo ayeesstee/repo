@@ -1,0 +1,13 @@
+# Copyright Ian Stewart 2024, All Rights Reserved.
+[package]
+name = "sol_shell"
+version = "0.1.0"
+publish = false
+edition = "2021"
+
+[dependencies]
+sol_runtime = { path = "../runtime" }
+libloading = "*"
+notify = "*"
+
+[lib]

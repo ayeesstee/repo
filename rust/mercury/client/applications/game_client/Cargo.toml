@@ -1,0 +1,14 @@
+# Copyright Ian Stewart 2024, All Rights Reserved.
+[package]
+name = "mercury_game_client"
+version = "0.1.0"
+publish = false
+edition = "2021"
+
+[dependencies]
+sol_runtime = { path = "../../../../sol/common/libraries/runtime" }
+sol_shell = { path = "../../../../sol/common/libraries/shell" }
+mimalloc = { version = "*", default-features = false }
+
+[[bin]]
+name = "mercury_game_client"
