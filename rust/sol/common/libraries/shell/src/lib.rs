@@ -3,4 +3,4 @@
 mod app;
 pub use self::app::App;
 
-pub mod modules;
+mod modules;

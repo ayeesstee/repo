@@ -1,28 +1,35 @@
 // Copyright Ian Stewart 2024, All Rights Reserved.
 
-use std::path::Path;
+use std::path::PathBuf;
 
 use sol_runtime::modules::ModuleRegistry;
 
-use crate::modules::ModuleLoader;
+use crate::modules::{ModuleCachePath, ModuleLoader, ModuleSourcePath};
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct App {
     registry: ModuleRegistry,
     module_loaders: Vec<ModuleLoader>,
 }
 
+impl Drop for App {
+    fn drop(&mut self) {
+        self.registry.shutdown();
+    }
+}
+
 impl App {
-    pub fn new(module_paths: &Vec<&Path>) -> Self {
-        let mut instance = Self {
-            registry: ModuleRegistry::default(),
-            module_loaders: Vec::with_capacity(module_paths.len()),
-        };
+    pub fn with_module(mut self, path: ModuleSourcePath) -> Self {
+        let cache_path = App::cache_path(&path);
+        self.module_loaders
+            .push(ModuleLoader::new(path, cache_path));
 
-        for module_path in module_paths {}
-
-        instance
+        self
     }
 
     pub fn run(&mut self) {}
+
+    fn cache_path(source_path: &ModuleSourcePath) -> ModuleCachePath {
+        ModuleCachePath(PathBuf::default())
+    }
 }

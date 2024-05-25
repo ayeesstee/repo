@@ -3,6 +3,7 @@ FROM fedora:40
 
 # Dependency Versions.
 ENV VERSION_RUST=1.78.0
+ENV VERSION_FLATBUFFERS=24.3.25
 
 # Copy over our .bashrc file.
 COPY docker/images/devcontainer/home/.bashrc /root/.bashrc
@@ -51,3 +52,12 @@ RUN cd /tmp \
     && mv dotnet /usr/local
     
 ENV PATH=/usr/local/dotnet/linux-x86_64:$PATH
+
+# Install FlatBuffers.
+RUN cd /tmp \
+    && curl -sSfL https://github.com/google/flatbuffers/releases/download/v${VERSION_FLATBUFFERS}/Linux.flatc.binary.g++-13.zip > Linux.flatc.binary.g++-13.zip \
+    && mkdir -p flatbuffers \
+    && unzip Linux.flatc.binary.g++-13.zip -d flatbuffers \
+    && rm -f Linux.flatc.binary.g++-13.zip \
+    && mv flatbuffers/flatc /usr/local/bin \
+    && rm -rf flatbuffers

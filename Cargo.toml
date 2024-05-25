@@ -1,11 +1,10 @@
 # Copyright Ian Stewart 2024, All Rights Reserved.
 [workspace]
 members = [
-    "rust/sol/common/libraries/module_registry",
     "rust/sol/common/libraries/runtime",
     "rust/sol/common/libraries/shell",
-    "rust/sol/common/modules/physics/interface",
-    "rust/sol/common/modules/physics/implementation",
+    "rust/sol/client/modules/window/interface",
+    "rust/sol/client/modules/window/winit",
     "rust/mercury/client/applications/game_client",
     "rust/mercury/server/applications/game_server",
 ]

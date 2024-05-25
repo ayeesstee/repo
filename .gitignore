@@ -2,4 +2,3 @@
 transient/
 
 .fake
-Cargo.lock

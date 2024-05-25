@@ -1,14 +1,14 @@
 # Copyright Ian Stewart 2024, All Rights Reserved.
 [package]
-name = "sol_physics_implementation"
+name = "sol_window_module_winit"
 version = "0.1.0"
 publish = false
 edition = "2021"
 
 [dependencies]
 sol_runtime = { path = "../../../libraries/runtime" }
-sol_physics_interface = { path = "../interface" }
-mimalloc = { version = "0.1.34", default-features = false }
+sol_window_module_interface = { path = "../interface" }
+mimalloc = "*"
 
 [lib]
 crate-type = ["cdylib"]
