@@ -9,5 +9,6 @@ edition = "2021"
 sol_runtime = { path = "../runtime" }
 libloading = "*"
 notify = "*"
+uuid = "*"
 
 [lib]

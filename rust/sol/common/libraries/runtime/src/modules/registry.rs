@@ -4,8 +4,10 @@ use std::{collections::HashMap, ptr::null};
 
 use crate::modules::{Module, ModuleId};
 
+/// The central registry of all active modules.
 #[derive(Debug, Default)]
 pub struct ModuleRegistry {
+    /// The lookup table of module identifiers to their respective loaded module.
     modules: HashMap<ModuleId, *const Module>,
 }
 
@@ -26,15 +28,37 @@ impl ModuleRegistry {
         self.modules.remove(&id);
     }
 
-    pub fn get<T>(&self, id: ModuleId) -> Option<*const T> {
+    /// Gets the module interface for a given module ID, if it exists.
+    ///
+    /// # Arguments
+    /// * `id` - The module ID to get the module interface for.
+    ///
+    /// # Returns
+    /// The pointer to the module's API, if it exists.
+    pub fn get<T>(&self, id: ModuleId) -> *const T {
         if let Some(n) = self.modules.get(&id) {
             let as_pointer = *n;
             unsafe {
                 let interface_pointer = ((*as_pointer).interface_func)();
-                Some(interface_pointer as *const T)
+                interface_pointer as *const T
             }
         } else {
-            None
+            null()
+        }
+    }
+
+    /// Gets the low-level module pointer for a given module ID, if it exists.
+    ///
+    /// # Arguments
+    /// * `id` - The module ID to get the module pointer for.
+    ///
+    /// # Returns
+    /// The pointer to the low-level module, if it exists.
+    pub fn get_raw(&self, id: ModuleId) -> *const Module {
+        if let Some(n) = self.modules.get(&id) {
+            n.clone()
+        } else {
+            null()
         }
     }
 

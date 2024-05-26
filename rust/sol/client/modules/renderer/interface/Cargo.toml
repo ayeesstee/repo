@@ -1,0 +1,11 @@
+# Copyright Ian Stewart 2024, All Rights Reserved.
+[package]
+name = "sol_renderer_module_interface"
+version = "0.1.0"
+publish = false
+edition = "2021"
+
+[dependencies]
+sol_runtime = { path = "../../../../common/libraries/runtime" }
+
+[lib]

@@ -66,7 +66,9 @@ impl ModuleLoader {
     /// # Arguments
     ///
     /// * `registry` - The module registry to unload and reload the module against.
-    pub fn update(&mut self, registry: &mut ModuleRegistry) {}
+    pub fn update(&mut self, registry: &mut ModuleRegistry) {
+        self.reload(registry);
+    }
 
     /// Reloads the module associated with this loader.
     ///
@@ -95,11 +97,11 @@ impl ModuleLoader {
         let id = self.id.unwrap();
 
         // Get the existing module for our module ID from the registry.
-        let module = registry.get(id);
+        let module = registry.get_raw(id);
 
         // If we retrieved a valid module back, unload it and capture the resulting serialized state.
-        let serialized_state = if let Some(n) = module {
-            unsafe { ((*n).unload_func)() }
+        let serialized_state = if module != null() {
+            unsafe { ((*module).unload_func)() }
         } else {
             null()
         };

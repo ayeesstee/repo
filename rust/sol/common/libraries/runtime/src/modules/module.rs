@@ -23,7 +23,7 @@ pub struct Module {
     /// The function used to unload this module with the intention of reloading a newer version of it.
     ///
     /// # Returns
-    /// The pointer to the serialized state of this function, to be passed to the new version that is later loaded.
+    /// The pointer to the serialized state of this module, to be passed to the new version that is later loaded.
     pub unload_func: fn() -> *const c_void,
 
     /// Shuts down this module, typically called during application exit.

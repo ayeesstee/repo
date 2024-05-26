@@ -1,9 +1,14 @@
 {
     "[rust]": {
         "editor.defaultFormatter": "rust-lang.rust-analyzer",
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+    },
+    "[fsharp]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "Ionide.Ionide-fsharp"
     },
     "coverage-gutters.showLineCoverage": true,
     "coverage-gutters.showRulerCoverage": true,
-    "coverage-gutters.showGutterCoverage": false
+    "coverage-gutters.showGutterCoverage": false,
+    "FSharp.enableAnalyzers": true
 }

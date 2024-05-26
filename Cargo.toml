@@ -1,8 +1,11 @@
 # Copyright Ian Stewart 2024, All Rights Reserved.
 [workspace]
+resolver = "2"
 members = [
     "rust/sol/common/libraries/runtime",
     "rust/sol/common/libraries/shell",
+    "rust/sol/client/modules/renderer/interface",
+    "rust/sol/client/modules/renderer/wgpu",
     "rust/sol/client/modules/window/interface",
     "rust/sol/client/modules/window/winit",
     "rust/mercury/client/applications/game_client",
@@ -13,15 +16,17 @@ members = [
 libloading = "0.8.3"
 mimalloc = { version = "0.1.41", default-features = false }
 notify = "6.1.1"
+uuid = "1.8.0"
+winit = "0.30.0"
+wgpu = "0.20.0"
 
 [profile.dev]
 opt-level = 1
 debug = true
-split-debuginfo = 'packed'
 debug-assertions = true
 overflow-checks = true
 lto = false
-panic = 'unwind'
+panic = "unwind"
 incremental = true
 codegen-units = 256
 rpath = false
@@ -29,11 +34,10 @@ rpath = false
 [profile.release]
 opt-level = 3
 debug = true
-split-debuginfo = 'packed'
 debug-assertions = false
 overflow-checks = false
 lto = true
-panic = 'abort'
+panic = "abort"
 incremental = true
 codegen-units = 1
 rpath = false

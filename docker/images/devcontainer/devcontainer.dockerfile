@@ -38,7 +38,7 @@ RUN curl -sSf https://sh.rustup.rs > /tmp/rustup.sh \
     && /root/.cargo/bin/rustup component add llvm-tools-preview \
     && /root/.cargo/bin/cargo install grcov \
     && rm -f /tmp/rustup.sh
-    
+
 # Install .NET.
 RUN cd /tmp \
     && curl -sSf https://download.visualstudio.microsoft.com/download/pr/4a252cd9-d7b7-41bf-a7f0-b2b10b45c068/1aff08f401d0e3980ac29ccba44efb29/dotnet-sdk-8.0.300-linux-x64.tar.gz > dotnet-sdk-8.0.300-linux-x86_64.tar.gz \
@@ -50,8 +50,11 @@ RUN cd /tmp \
     && unzip dotnet-sdk-8.0.300-win-x86_64.zip -d dotnet/windows-x86_64 \
     && rm -f dotnet-sdk-8.0.300-win-x86_64.zip \
     && mv dotnet /usr/local
-    
+
 ENV PATH=/usr/local/dotnet/linux-x86_64:$PATH
+
+# Install Fantomas.
+RUN dotnet tool install fantomas --global
 
 # Install FlatBuffers.
 RUN cd /tmp \
